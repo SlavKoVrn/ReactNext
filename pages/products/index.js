@@ -1,6 +1,6 @@
 // pages/products/index.js
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductContext } from "../../context/ProductContext";
 
 export default function ProductsPage() {
@@ -12,6 +12,9 @@ export default function ProductsPage() {
     setCurrentPage,
     productsPerPage,
   } = useContext(ProductContext);
+
+  // State to track liked products
+  const [likedProducts, setLikedProducts] = useState(new Set());
 
   if (loading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-danger">Error: {error}</p>;
@@ -25,6 +28,19 @@ export default function ProductsPage() {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  // Toggle like state for a product
+  const toggleLike = (productId) => {
+    setLikedProducts((prevLikedProducts) => {
+      const newLikedProducts = new Set(prevLikedProducts);
+      if (newLikedProducts.has(productId)) {
+        newLikedProducts.delete(productId); // Unlike
+      } else {
+        newLikedProducts.add(productId); // Like
+      }
+      return newLikedProducts;
+    });
   };
 
   return (
@@ -41,11 +57,24 @@ export default function ProductsPage() {
                 style={{ height: "200px", objectFit: "cover" }}
               />
               <div className="card-body d-flex flex-column">
+
+                {/* Like Button */}
+                <button
+                  className={`btn btn-sm like-button ${
+                    likedProducts.has(product.id) ? "liked" : ""
+                  }`}
+                  onClick={() => toggleLike(product.id)}
+                >
+                  <span className="like-icon">❤️</span>
+                </button>
+
                 <h5 className="card-title">{product.title}</h5>
                 <p className="card-text text-muted">{product.category}</p>
                 <p className="card-text">${product.price}</p>
+
+                {/* Product Link */}
                 <Link href={`/products/${product.id}`}>
-                    <strong>{product.title}</strong> - ${product.price}
+                  <strong>{product.title}</strong> - ${product.price}
                 </Link>
               </div>
             </div>
