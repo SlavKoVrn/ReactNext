@@ -1,18 +1,37 @@
+// pages/products/index.js
 import Link from "next/link";
 import { useContext } from "react";
 import { ProductContext } from "../../context/ProductContext";
 
 export default function ProductsPage() {
-  const { products, loading, error } = useContext(ProductContext);
+  const {
+    products,
+    loading,
+    error,
+    currentPage,
+    setCurrentPage,
+    productsPerPage,
+  } = useContext(ProductContext);
 
   if (loading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-danger">Error: {error}</p>;
+
+  // Pagination logic
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-4">Product List</h1>
       <div className="row">
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <div key={product.id} className="col-md-4 mb-4">
             <div className="card h-100">
               <img
@@ -33,6 +52,25 @@ export default function ProductsPage() {
           </div>
         ))}
       </div>
+
+      {/* Pagination Controls */}
+      <nav aria-label="Page navigation" className="mt-4">
+        <ul className="pagination justify-content-center">
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <li
+              key={index + 1}
+              className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
+            >
+              <button
+                className="page-link"
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }

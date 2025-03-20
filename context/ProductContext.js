@@ -7,18 +7,23 @@ export const ProductProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(6); // Number of products per page
+
   // Fetch products from the API
   const fetchProducts = async () => {
     try {
       const response = await fetch("https://fakestoreapi.com/products");
       if (!response.ok) {
-        throw new Error("Failed to fetch products");
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
       setProducts(data);
       setLoading(false);
     } catch (err) {
-      setError(err.message);
+      console.error("Error fetching products:", err.message);
+      setError(err.message || "Failed to fetch products.");
       setLoading(false);
     }
   };
@@ -28,7 +33,16 @@ export const ProductProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ products, loading, error }}>
+    <ProductContext.Provider
+      value={{
+        products,
+        loading,
+        error,
+        currentPage,
+        setCurrentPage,
+        productsPerPage,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );
