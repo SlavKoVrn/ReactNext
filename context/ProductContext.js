@@ -8,11 +8,9 @@ export const ProductProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6);
 
-  // Fetch products from the API
   const fetchProducts = async () => {
     try {
       setTimeout(() => {

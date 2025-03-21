@@ -1,4 +1,3 @@
-// pages/products/index.js
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { ProductContext } from "../../context/ProductContext";
