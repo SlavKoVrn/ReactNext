@@ -1,3 +1,13 @@
+<h1> Deploy </h1>
+
+[https://react-next-self-one.vercel.app/](https://react-next-self-one.vercel.app/)
+
+<h3>развернуть проект</h3>
+
+```bash
+npx create-next-app@latest spa
+```
+
 <p class=MsoNormal align=center style='text-align:center'><b><span
 style='font-family:Acrom;color:#444444;background:white'>Тестовое задание
 необходимо выполнить только с указанным стэком и прислать две ссылки. Работа с
