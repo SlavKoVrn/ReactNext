@@ -46,8 +46,10 @@ export default function ProductsPage() {
 
     // Function to handle product deletion
     const handleDeleteProduct = (productId) => {
+      if (confirm('delete product ?')){
         const updatedProducts = products.filter((product) => product.id !== productId);
         setProducts(updatedProducts);
+      }
     };
 
     return (
