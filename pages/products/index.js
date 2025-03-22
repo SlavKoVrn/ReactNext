@@ -53,6 +53,9 @@ export default function ProductsPage() {
 
     return (
     <div className="container mt-5">
+      <Link href={`/create-product`}>
+          <button type="submit" className="btn btn-primary">Create Product</button>
+      </Link>
       <h1 className="text-center mb-4">Product List</h1>
       <div className="row">
         {currentProducts.map((product) => (
