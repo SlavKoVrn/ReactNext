@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { ProductContext } from "../../context/ProductContext";
+import Link from "next/link";
 
 export default function ProductDetailPage() {
   const router = useRouter();
@@ -16,6 +17,12 @@ export default function ProductDetailPage() {
 
   return (
     <div className="container mt-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/products">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{product.title}</li>
+      </ol>
+    </nav>
       <div className="row">
         <div className="col-md-6">
           <img
@@ -30,6 +37,13 @@ export default function ProductDetailPage() {
           <p className="text-muted">{product.category}</p>
           <h3 className="text-primary">${product.price}</h3>
           <p>{product.description}</p>
+
+          <Link href={`/products/${product.id}/edit`}>
+          <button className="btn btn-primary">
+            Edit
+          </button>
+          </Link>
+
           <button className="btn btn-secondary" onClick={() => router.back()}>
             Go Back
           </button>
