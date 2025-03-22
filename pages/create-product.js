@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import ProductForm from "../components/ProductForm";
+import Link from "next/link";
 
 export default function CreateProductPage() {
   const router = useRouter();
@@ -21,7 +22,11 @@ export default function CreateProductPage() {
     <div className="container mt-5">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/products">Products</a></li>
+        <li class="breadcrumb-item">
+            <Link href="/products" legacyBehavior>
+                <a>Products</a>
+            </Link>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Create New Product</li>
       </ol>
     </nav>

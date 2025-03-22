@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../../context/ProductContext";
 import ProductForm from "../../../components/ProductForm";
+import Link from "next/link";
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -43,7 +44,9 @@ export default function EditProductPage() {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <a href="/products">Products</a>
+            <Link href="/products" legacyBehavior>
+                <a>Products</a>
+            </Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             {product.title}

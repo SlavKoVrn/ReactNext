@@ -19,7 +19,11 @@ export default function ProductDetailPage() {
     <div className="container mt-5">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/products">Products</a></li>
+        <li class="breadcrumb-item">
+            <Link href="/products" legacyBehavior>
+                <a>Products</a>
+            </Link>
+	</li>
         <li class="breadcrumb-item active" aria-current="page">{product.title}</li>
       </ol>
     </nav>
