@@ -74,6 +74,7 @@ export default function ProductsPage() {
       const updatedProducts = products.filter(
         (product) => product.id !== productId
       );
+      likedProducts.delete(productId);
       setProducts(updatedProducts);
     }
   };
