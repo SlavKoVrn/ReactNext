@@ -16,15 +16,23 @@ export default function ProductsPage() {
   // State to track liked products
   const [likedProducts, setLikedProducts] = useState(new Set());
 
+  // State for search query
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter products based on the search query
+  const filteredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   if (loading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-danger">Error: {error}</p>;
 
   // Pagination logic
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -57,7 +65,20 @@ export default function ProductsPage() {
       <Link href={`/create-product`}>
           <button type="submit" className="btn btn-primary">Create Product</button>
       </Link>
+
       <h1 className="text-center mb-4">Product List</h1>
+
+      {/* Search Input */}
+      <div className="mb-3">
+        <input
+            type="text"
+            className="form-control"
+            placeholder="Search products by title..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
       <div className="row">
         {currentProducts.map((product) => (
           <div key={product.id} className="col-md-4 pb-5">
