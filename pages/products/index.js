@@ -83,6 +83,10 @@ export default function ProductsPage() {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="mb-0">Product List</h1>
 
+        <Link href={`/create-product`}>
+          <button type="submit" className="btn btn-primary">Create Product</button>
+        </Link>
+
         {/* Button to toggle between showing all products and liked products */}
         <button
           className="btn btn-default"
