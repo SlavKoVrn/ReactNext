@@ -1,6 +1,6 @@
-import { useState } from "react";
+import {useState} from "react";
 
-export default function ProductForm({ initialData, onSubmit }) {
+export default function ProductForm({initialData, onSubmit}) {
   const [formData, setFormData] = useState({
     title: initialData?.title || "",
     price: initialData?.price || 0,
@@ -10,7 +10,7 @@ export default function ProductForm({ initialData, onSubmit }) {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,

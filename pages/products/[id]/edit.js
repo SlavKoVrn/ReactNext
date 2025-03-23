@@ -1,14 +1,14 @@
-import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
-import { ProductContext } from "../../../context/ProductContext";
+import {useRouter} from "next/router";
+import {useContext, useEffect, useState} from "react";
+import {ProductContext} from "../../../context/ProductContext";
 import ProductForm from "../../../components/ProductForm";
 import Link from "next/link";
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 export default function EditProductPage() {
   const router = useRouter();
-  const { id } = router.query; // Extract product ID from the URL
-  const { products, setProducts } = useContext(ProductContext);
+  const {id} = router.query; // Extract product ID from the URL
+  const {products, setProducts} = useContext(ProductContext);
 
   // Fetch the product data when the component mounts or the ID changes
   const [product, setProduct] = useState(null);
@@ -35,7 +35,7 @@ export default function EditProductPage() {
   // Handle form submission
   const handleUpdate = (updatedProduct) => {
     const updatedProducts = products.map((p) =>
-      p.id === parseInt(id) ? { ...p, ...updatedProduct } : p
+      p.id === parseInt(id) ? {...p, ...updatedProduct} : p
     );
     setProducts(updatedProducts);
 
@@ -60,7 +60,7 @@ export default function EditProductPage() {
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
             <Link href="/products" legacyBehavior>
-                <a>Products</a>
+              <a>Products</a>
             </Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
@@ -69,7 +69,7 @@ export default function EditProductPage() {
         </ol>
       </nav>
       <h1 className="text-center mb-4">Edit Product</h1>
-      <ProductForm initialData={product} onSubmit={handleUpdate} />
+      <ProductForm initialData={product} onSubmit={handleUpdate}/>
     </div>
   );
 }

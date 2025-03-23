@@ -1,9 +1,9 @@
-import { products as dataProducts } from "../data/products";
-import { createContext, useState, useEffect } from "react";
+import {products as dataProducts} from "../data/products";
+import {createContext, useState, useEffect} from "react";
 
 export const ProductContext = createContext();
 
-export const ProductProvider = ({ children }) => {
+export const ProductProvider = ({children}) => {
   const [products, setProducts] = useState([]);
   const [likedProducts, setLikedProducts] = useState(new Set());
   const [loading, setLoading] = useState(true);
