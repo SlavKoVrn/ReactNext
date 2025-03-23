@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import ProductForm from "../components/ProductForm";
 import Link from "next/link";
+import { toast } from 'react-toastify';
 
 export default function CreateProductPage() {
   const router = useRouter();
@@ -14,7 +15,14 @@ export default function CreateProductPage() {
     const createdProduct = { ...newProduct, id: newProductId };
     setProducts([...products, createdProduct]);
 
-    alert("Product created successfully!");
+    toast.success('Product created successfully!', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
     router.push(`/products/${newProductId}`); // Redirect to the product detail page
   };
 

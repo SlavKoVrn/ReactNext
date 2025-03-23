@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../../context/ProductContext";
 import ProductForm from "../../../components/ProductForm";
 import Link from "next/link";
+import { toast } from 'react-toastify';
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -18,7 +19,14 @@ export default function EditProductPage() {
       if (selectedProduct) {
         setProduct(selectedProduct);
       } else {
-        alert("Product not found!");
+        toast.error('Product not found!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
         router.push("/products");
       }
     }
@@ -31,7 +39,14 @@ export default function EditProductPage() {
     );
     setProducts(updatedProducts);
 
-    alert("Product updated successfully!");
+    toast.success('Product updated successfully!', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
     router.push(`/products/${id}`); // Redirect to the product detail page
   };
 
