@@ -8,6 +8,13 @@
 npx create-next-app@latest spa
 ```
 
+<h3>дополнительные библиотеки</h3>
+
+```bash
+npm install bootstrap
+npm install react-toastify
+```
+
 <p class=MsoNormal align=center style='text-align:center'><b><span
 style='font-family:Acrom;color:#444444;background:white'>Тестовое задание
 необходимо выполнить только с указанным стэком и прислать две ссылки. Работа с
