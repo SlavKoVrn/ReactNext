@@ -23,7 +23,7 @@ export default function ProductDetailPage() {
             <Link href="/products" legacyBehavior>
                 <a>Products</a>
             </Link>
-	</li>
+	    </li>
         <li class="breadcrumb-item active" aria-current="page">{product.title}</li>
       </ol>
     </nav>

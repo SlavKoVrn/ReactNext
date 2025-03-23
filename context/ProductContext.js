@@ -5,9 +5,9 @@ export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [likedProducts, setLikedProducts] = useState(new Set());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6);
 
@@ -47,6 +47,8 @@ export const ProductProvider = ({ children }) => {
       value={{
         products,
         setProducts,
+        likedProducts,
+        setLikedProducts,
         loading,
         error,
         currentPage,
